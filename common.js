@@ -203,7 +203,6 @@
 
 		updateTurn()
 			.then(data => {
-				console.log(data);
 				let index = 0
 				gift = listGift.filter(item => item.id === data.data)
 
