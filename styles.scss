@@ -1,5 +1,5 @@
 :root {
-	--size-wheel: 345px;
+	--size-wheel: 340px;
 }
 
 html {
@@ -102,11 +102,11 @@ li {
 	padding-top: 1.7rem;
 	font-weight: 600;
 	color: #fff;
+	font-size: 1.4rem;
 
 	& > strong {
 		display: inline-block;
 		word-break: break-word;
-		max-width: 20%;
 	}
 }
 
