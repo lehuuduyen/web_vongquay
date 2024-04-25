@@ -126,7 +126,7 @@
 					showCoin.innerHTML = ``
 
 				}else{
-					showCoin.innerHTML = `${coin}`
+					showCoin.innerHTML = `${numeral(coin).format('0,0')}`
 				}
 
 		} catch (error) {
