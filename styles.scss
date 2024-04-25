@@ -16,6 +16,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background: url(/img/bg02.jpg) no-repeat center top / cover;
 }
 
 main {
@@ -37,6 +38,7 @@ main {
 .turn,
 .msg {
 	font-size: 1.6rem;
+	color: #fff;
 }
 
 .wheel {
@@ -52,10 +54,10 @@ main {
 
 
 .inner {
-	padding: 56px 30px 64px;
+	padding: 48px 30px 70px 33px;
 	width: var(--size-wheel);
 	height: var(--size-wheel);
-	background: url(/img/bg.jpg) no-repeat center / contain;
+	background: url(/img/bg.png) no-repeat center / contain;
 }
 
 .banner {
