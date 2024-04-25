@@ -141,7 +141,9 @@
 		try  {
 				const response = await fetch(API_POST, {
 				method: "POST",
-				options
+				headers: {
+					Authorization: `Bearer ${access_token}`,
+				}
 			});
 
 			return response.json();
