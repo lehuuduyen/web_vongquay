@@ -17,9 +17,14 @@
 	const btnWheel = $('.btn')
 	const showTurn = $('.count')
 	const showCoin = $('.coin')
+	const urlParams = new URLSearchParams(window.location.search);
+	let rawToken = urlParams.get('token');
+
+	var access_token = rawToken.replace(/ /g, '+');
+	console.log(access_token)
 	const options = {
 		headers: {
-			Authorization: "Bearer IgdzDgVoeb5MtfdxHpnQQ2K55m6YfGU8tn1ah1hZN6oRvcbab228SysMAob+2nInbr3At/jRga5gVMevnDGln691ilRjbj9jPr2JGlPR8iELU+W/tMa/ZDT8EniuK05KJyOlDYpixWCjAbxrWZ/wZHCWKOpPow68mvMVQHTCScl5kax/GLLOtH/QdQU9bkId2tgRlZ26i5gIQFc0C2jJlPCmIe8kqjKKp+hJvyBTzY+ST2y9pT0QkZFX+Tn1oNLcwycuqVTB7WQIPI7By2ZCa9oLRooeMj0+jlkjYuZWAI0=",
+			Authorization: `Bearer ${access_token}`,
 		},
 	}
 
@@ -45,8 +50,11 @@
 	const getData = async(url) => {
 		try {
 				const data = await fetchData(url);
-
-				turn = data.data
+				if(data.code ==500){
+					turn ="";
+				}else{
+					turn = data.data
+				}
 				showTurn.innerHTML = `${turn}`
 
 		} catch (error) {
@@ -114,8 +122,12 @@
 				const data = await fetchDataTotal(url);
 
 				coin = data.data.so_xu
+				if(data.code ==500){
+					showCoin.innerHTML = ``
 
-				showCoin.innerHTML = `${coin}`
+				}else{
+					showCoin.innerHTML = `${coin}`
+				}
 
 		} catch (error) {
 				console.error('Error getting data:', error);
@@ -169,26 +181,28 @@
 				size = listGift.length
 				const rotate = 360 / size
 				const skewY = 90 - rotate
-
-				listGift.map((item, index) => {
-					const elm = document.createElement('li')
-
-					elm.style.transform = `rotate(${rotate * index}deg) skewY(-${skewY}deg)`;
-
-					if (index % 2 === 0) {
-						elm.innerHTML = `
-						<p style="transform: skewY(${skewY}deg) rotate(${rotate / 2}deg)" class="text text-1">
-							<strong>${item.name}</strong>
-						</p>`
-					} else {
-						elm.innerHTML = `
-						<p style="transform: skewY(${skewY}deg) rotate(${rotate / 2}deg)" class="text text-2">
-							<strong>${item.name}</strong>
-						</p>`
-					}
-
-					wheel.appendChild(elm)
-				})
+				if(size >0){
+					listGift.map((item, index) => {
+						const elm = document.createElement('li')
+	
+						elm.style.transform = `rotate(${rotate * index}deg) skewY(-${skewY}deg)`;
+	
+						if (index % 2 === 0) {
+							elm.innerHTML = `
+							<p style="transform: skewY(${skewY}deg) rotate(${rotate / 2}deg)" class="text text-1">
+								<strong>${item.name}</strong>
+							</p>`
+						} else {
+							elm.innerHTML = `
+							<p style="transform: skewY(${skewY}deg) rotate(${rotate / 2}deg)" class="text text-2">
+								<strong>${item.name}</strong>
+							</p>`
+						}
+	
+						wheel.appendChild(elm)
+					})
+				}
+				
 
 		} catch (error) {
 				console.error('Error getting data:', error);
