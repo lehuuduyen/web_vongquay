@@ -78,10 +78,10 @@ main {
 
 	// .wrapper:before .
 	&:before {
-		top: 15px;
+		top: 0;
 		content: '';
 		position: absolute;
-		left: 50%;
+		left: calc(50% + 2px);
 		z-index: 2;
 		transform: translateX(-50%);
 		width: 60px;
