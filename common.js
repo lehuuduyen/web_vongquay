@@ -21,7 +21,7 @@
 	let rawToken = urlParams.get('token');
 
 	var access_token = rawToken.replace(/ /g, '+');
-	
+
 	const options = {
 		headers: {
 			Authorization: `Bearer ${access_token}`,
@@ -184,9 +184,9 @@
 				if(size >0){
 					listGift.map((item, index) => {
 						const elm = document.createElement('li')
-	
-						elm.style.transform = `rotate(${rotate * index}deg) skewY(-${skewY}deg)`;
-	
+
+						elm.style.transform = `rotate(${rotate * index + (rotate / 2)}deg) skewY(-${skewY}deg)`;
+
 						if (index % 2 === 0) {
 							elm.innerHTML = `
 							<p style="transform: skewY(${skewY}deg) rotate(${rotate / 2}deg)" class="text text-1">
@@ -198,11 +198,11 @@
 								<strong>${item.name}</strong>
 							</p>`
 						}
-	
+
 						wheel.appendChild(elm)
 					})
 				}
-				
+
 
 		} catch (error) {
 				console.error('Error getting data:', error);
@@ -242,7 +242,7 @@
 		size = listGift.length // Number of gifts
 		const rotate = 360 / size // Number of item in wheel
 
-		const rotateWheel = currentRotate - (index * rotate) - (rotate / 2)
+		const rotateWheel = currentRotate - (index * rotate) - (rotate)
 
 		$('.wheel').style.transform = `rotate(${rotateWheel}deg)`
 	}
