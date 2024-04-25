@@ -21,7 +21,7 @@
 	let rawToken = urlParams.get('token');
 
 	var access_token = rawToken.replace(/ /g, '+');
-	$('.turn2').innerHTML= access_token
+	
 	const options = {
 		headers: {
 			Authorization: `Bearer ${access_token}`,
