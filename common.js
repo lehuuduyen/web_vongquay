@@ -5,22 +5,27 @@
 	const API_POST = 'https://api.iname.me/api/active_rotation'
 	const API_COINS = 'https://api.iname.me/api/list_rotation'
 	const API_TOTAL = 'https://api.iname.me/api/get_xu'
-	const API_LOGIN = 'https://api.iname.me/api/check_turn_daily'
 	let timeRotate = 7000
 	let currentRotate = 0
 	let isRotating = false
 	let coin = 0
 	let listGift = []
 	let size = 0
-	let isLoginDaily = false
 	const wheel = $('.wheel')
 	const btnWheel = $('.btn')
 	const showTurn = $('.count')
 	const showCoin = $('.coin')
+	const popup = $('.popup')
+	const popupText = $('.popup p')
+	const popupClose = $('.popup-close')
 	const urlParams = new URLSearchParams(window.location.search);
 	let rawToken = urlParams.get('token');
 
 	var access_token = rawToken.replace(/ /g, '+');
+
+	popupClose.addEventListener('click', function() {
+		popup.classList.remove('active')
+	})
 
 	const options = {
 		headers: {
@@ -83,21 +88,6 @@
 		}
 	}
 
-	const getLoginStatus = async(url) => {
-		try {
-				const data = await fetchLoginStatus(url);
-
-				isLoginDaily = data.data
-
-				// console.log('User is login', isLoginDaily);
-
-		} catch (error) {
-				console.error('Error getting data:', error);
-		}
-	}
-
-	getLoginStatus(API_LOGIN);
-
 	// Get total coin from API
 	const fetchDataTotal = async(url) => {
 		try {
@@ -142,7 +132,8 @@
 				const response = await fetch(API_POST, {
 				method: "POST",
 				headers: {
-					Authorization: `Bearer ${access_token}`,
+					// Authorization: `Bearer ${access_token}`,
+					Authorization: "Bearer IgdzDgVoeb5MtfdxHpnQQ2K55m6YfGU8tn1ah1hZN6oRvcbab228SysMAob+2nInbr3At/jRga5gVMevnDGln691ilRjbj9jPr2JGlPR8iELU+W/tMa/ZDT8EniuK05KJyOlDYpixWCjAbxrWZ/wZHCWKOpPow68mvMVQHTCScl5kax/GLLOtH/QdQU9bkId2tgRlZ26i5gIQFc0C2jJlPCmIe8kqjKKp+hJvyBTzY+ST2y9pT0QkZFX+Tn1oNLcwycuqVTB7WQIPI7By2ZCa9oLRooeMj0+jlkjYuZWAI0=",
 				}
 			});
 
@@ -231,7 +222,8 @@
 					showGift(gift, data.message)
 
 				} else {
-					alert('Bạn đã hết lượt quay!')
+					popupText.innerHTML = 'Bạn đã hết lượt quay!'
+					popup.classList.add('active')
 					isRotating = false
 				}
 			})
@@ -254,7 +246,8 @@
 			coin+=gift[0].point
 			isRotating = false
 
-			alert(mess)
+			popupText.innerHTML = `${mess}`
+			popup.classList.add('active')
 
 			showTurn.innerHTML = `${turn}`
 			showCoin.innerHTML = `${coin}`

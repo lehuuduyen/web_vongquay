@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
 :root {
 	--size-wheel: 345px;
@@ -21,8 +21,11 @@ body {
 	background: url(/img/bg02.jpg) no-repeat center top / 1024px auto;
 	overflow-x: hidden;
 	overflow-y: auto;
-	font-family: "Oswald", sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
+	// font-family: "Oswald", sans-serif;
 	font-weight: 700;
+	font-size: 1.5rem;
+	line-height: 1.5;
 }
 
 main {
@@ -77,7 +80,7 @@ ol {
 
 .turn,
 .msg {
-	font-size: 5vw;
+	// font-size: 5vw;
 	line-height: 1.5;
 	color: #fff;
 	text-transform: uppercase;
@@ -94,7 +97,7 @@ ol {
 	background: url(/img/bg03.png) no-repeat center / contain;
 
 	li {
-		font-size: 20px;
+		// font-size: 20px;
 		overflow: hidden;
 		position: absolute;
 		top: 0;
@@ -195,6 +198,71 @@ ol {
 				}
 			}
 		}
+	}
+}
+
+.popup {
+	padding: 40px 20px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	pointer-events: none;
+	visibility: hidden;
+	z-index: 6;
+	background-color: rgba($color: #000, $alpha: .4);
+
+	&.active {
+		opacity: 1;
+		pointer-events: all;
+		visibility: visible;
+	}
+
+	&-close {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		width: 40px;
+		height: 40px;
+
+		&:before,
+		&:after {
+			position: absolute;
+			top: 20px;
+			left: 0;
+			width: 100%;
+			height: 2px;
+			background-color: #fff;
+			content: '';
+		}
+
+		&:before {
+			transform: rotate(45deg);
+		}
+
+		&:after {
+			transform: rotate(-45deg);
+		}
+	}
+
+	&-inner {
+		padding: 20px;
+		width: 100%;
+		max-width: 335px;
+		height: max-content;
+		border-radius: 20px;
+		border: 2px solid #000;
+		background: url(/img/bg02.jpg) no-repeat center top / 767px auto;
+	}
+
+	p {
+		color: #fff;
+		text-align: center;
 	}
 }
 
