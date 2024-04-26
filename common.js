@@ -231,7 +231,7 @@
 					showGift(gift, data.message)
 
 				} else {
-					alert('You is lack of turn!')
+					alert('Bạn đã hết lượt quay!')
 					isRotating = false
 				}
 			})
