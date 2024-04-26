@@ -142,7 +142,7 @@
 				const response = await fetch(API_POST, {
 				method: "POST",
 				headers: {
-					Authorization: "Bearer IgdzDgVoeb5MtfdxHpnQQ2K55m6YfGU8tn1ah1hZN6oRvcbab228SysMAob+2nInbr3At/jRga5gVMevnDGln691ilRjbj9jPr2JGlPR8iELU+W/tMa/ZDT8EniuK05KJyOlDYpixWCjAbxrWZ/wZHCWKOpPow68mvMVQHTCScl5kax/GLLOtH/QdQU9bkId2tgRlZ26i5gIQFc0C2jJlPCmIe8kqjKKp+hJvyBTzY+ST2y9pT0QkZFX+Tn1oNLcwycuqVTB7WQIPI7By2ZCa9oLRooeMj0+jlkjYuZWAI0=",
+					Authorization: `Bearer ${access_token}`,
 				}
 			});
 
@@ -231,7 +231,7 @@
 					showGift(gift, data.message)
 
 				} else {
-					alert('You is lack of turn!')
+					alert('Bạn đã hết lượt quay!')
 					isRotating = false
 				}
 			})
